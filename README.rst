@@ -156,3 +156,5 @@ You can then deploy by running the following commands.
     ssh -t dokku@yourservername.com dokku run GTR python manage.py createsuperuser
 
 When deploying via Dokku make sure you backup your database in some fashion as it is NOT done automatically.
+
+[2015-05-16] test git
