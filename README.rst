@@ -157,32 +157,39 @@ You can then deploy by running the following commands.
 
 When deploying via Dokku make sure you backup your database in some fashion as it is NOT done automatically.
 
-[2015-05-16] test git
-
 Development
 ------------
 
 Setup
-^^^^^^
+^^^^^
 
 * Install Python 3.4.3 from here_
 * Check Python Path using which. If installed from site package, it should show up as /Library/Frameworks/Python.framework/Versions/3.4/bin/python3 
 
 ..  code-block:: bash
     
-    which python3
+    $ which python3
 
 * Install Homebrew_
 .. _here: https://www.python.org/downloads/
 .. _Homebrew: http://brew.sh
- 
-* Install virtualenv and virtualenvwrapper 
+
+Virtual Environment
+^^^^^
+
+* Install virtualenv and virtualenvwrapper
 
 ..  code-block:: bash
 
-    pip3 install virtualenv, virtualenvwrapper
+    $ pip3 install virtualenv, virtualenvwrapper
 
-* Update .bash_profile or .bashrc file
+* Create .virtualenvs folder in root. This folder will house all virtual environments for your projects.
+
+..  code-block:: bash
+
+    $ mkdir ~/.virtualenvs
+
+* Update .bash_profile or .bashrc file in your root with following code (using python3 path as described above)
 
 ..  code-block:: bash
 
@@ -196,3 +203,74 @@ Setup
     source /Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh
     VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.4/bin/python3
 
+* Create a new virtual environment:
+
+..  code-block:: bash
+    
+    $ mkvirtualenv my_env
+
+* After creating, the virtual environment should be active. Check using which python again.
+
+* To deactivate the virtual env:
+
+..  code-block:: bash
+
+    $ deactivate
+
+* To activate again:
+ 
+..  code-block:: bash
+
+    $ workon my_env
+
+* Now the virtual environment is setup, install Django 1.8.1 and the modules required for the project:
+
+.. code-block:: bash
+
+    $ pip install Django
+    $ cd ~
+    $ git clone https://github.com/project-musashi/GTR
+    $ cd GTR
+    $ pip install -r requirements/local.txt
+
+PostgreSQL Setup
+^^^^^
+
+* Install postgresql via brew
+
+..  code-block:: bash
+
+    $ brew install postgresql
+
+* Run postgres
+
+..  code-block:: bash
+
+    $ postgres -D /usr/local/var/postgres
+
+* Create a DB from another terminal
+
+..  code-block:: bash
+     
+    $ Createdb `GTR`
+
+Run Development Server
+^^^^^
+
+* Go to project root. Migrate DB settings.
+
+..  code-block:: bash
+
+    $ python manage.py check
+    $ python manage.py migrate
+
+* Run the server with local settings
+
+..  code-block:: bash
+
+    $ python manage.py runserver —settings=config.settings.local
+
+* Visit 127.0.0.1:8000 to view the webpage
+
+
+    
