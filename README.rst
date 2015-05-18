@@ -158,3 +158,41 @@ You can then deploy by running the following commands.
 When deploying via Dokku make sure you backup your database in some fashion as it is NOT done automatically.
 
 [2015-05-16] test git
+
+Development
+------------
+
+Setup
+^^^^^^
+
+* Install Python 3.4.3 from here_
+* Check Python Path using which. If installed from site package, it should show up as /Library/Frameworks/Python.framework/Versions/3.4/bin/python3 
+
+..  code-block:: bash
+    
+    which python3
+
+* Install Homebrew_
+.. _here: https://www.python.org/downloads/
+.. _Homebrew: http://brew.sh
+ 
+* Install virtualenv and virtualenvwrapper 
+
+..  code-block:: bash
+
+    pip3 install virtualenv, virtualenvwrapper
+
+* Update .bash_profile or .bashrc file
+
+..  code-block:: bash
+
+    # Setting PATH for Python 3.4
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+    export PATH
+
+    # For Virtual Env
+    export WORKON_HOME=~/.virtualenvs
+    source /Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh
+    VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.4/bin/python3
+
