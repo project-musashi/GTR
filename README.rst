@@ -91,16 +91,18 @@ Heroku
 
 Install the following component first
 
-...code-block::bash
-   pip install dj-database-url dj-static
+..  code-block:: bash
+
+    pip install dj-database-url dj-static
 
 Add the following code to the wsgi.py
 
-...code-block::bash
-   import os
-   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-   from django.core.wsgi import get_wsgi_application from dj_static import Cling
-   application = Cling(get_wsgi_application())
+..  code-block:: bash
+
+    import os
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+    from django.core.wsgi import get_wsgi_application from dj_static import Cling
+    application = Cling(get_wsgi_application())
 
 Run these commands to deploy the project to Heroku:
 
