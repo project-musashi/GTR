@@ -89,6 +89,19 @@ It is possible to deploy to Heroku or to your own server by using Dokku, an open
 Heroku
 ^^^^^^
 
+Install the following component first
+
+...code-block::bash
+   pip install dj-database-url dj-static
+
+Add the following code to the wsgi.py
+
+...code-block::bash
+   import os
+   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+   from django.core.wsgi import get_wsgi_application from dj_static import Cling
+   application = Cling(get_wsgi_application())
+
 Run these commands to deploy the project to Heroku:
 
 .. code-block:: bash
@@ -111,6 +124,7 @@ Run these commands to deploy the project to Heroku:
 
     git push heroku master
     heroku run python manage.py migrate
+    heroku run python manage.py collectstatic
     heroku run python manage.py check --deploy
     heroku run python manage.py createsuperuser
     heroku open
