@@ -7,10 +7,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from GTR.forum.views import LinkDetailView
+
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
+    url(r'^home/$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
-    #url(r'^forum/$', TemplateView.as_view(template_name='pages/forum.html'), name="about"),
 
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
@@ -20,10 +21,10 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
-    url(r'^forum/$',  include("GTR.forum.urls", namespace="forum")),
 
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^',  include("GTR.forum.urls", namespace="forum")),
+    url(r'^(?P<pk>\d+)/$', view=LinkDetailView.as_view(), name='link_detail'),
+]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
