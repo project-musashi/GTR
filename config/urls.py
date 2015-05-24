@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from GTR.forum.views import LinkDetailView
+#from GTR.forum.views import LinkDetailView
 
 urlpatterns = [
     url(r'^home/$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
@@ -23,7 +23,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
 
     url(r'^',  include("GTR.forum.urls", namespace="forum")),
-    url(r'^(?P<pk>\d+)/$', view=LinkDetailView.as_view(), name='link_detail'),
+    url(r'^comments/', include('django_comments.urls')),
 ]
 
 if settings.DEBUG:

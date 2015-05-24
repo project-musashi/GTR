@@ -8,6 +8,9 @@ from django.views.generic.edit import CreateView
 from .forms import LinkForm
 from braces.views import LoginRequiredMixin
 from django.views.generic import DetailView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 
 class LinkListView(ListView):
     model = Link
@@ -28,3 +31,11 @@ class LinkCreateView(LoginRequiredMixin, CreateView):
 
 class LinkDetailView(DetailView):
     model = Link
+
+class LinkUpdateView(LoginRequiredMixin, UpdateView):
+    model = Link
+    form_class = LinkForm
+
+class LinkDeleteView(LoginRequiredMixin, DeleteView):
+    model = Link
+    success_url = reverse_lazy("forum:forum")
