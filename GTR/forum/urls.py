@@ -13,6 +13,7 @@ urlpatterns = [
     url(regex=r'^(?P<pk>\d+)/$', view=views.LinkDetailView.as_view(), name='link_detail'),
     url(regex=r'^update/(?P<pk>\d+)/$', view=views.LinkUpdateView.as_view(), name='link_update'),
     url(regex=r'^delete/(?P<pk>\d+)/$', view=views.LinkDeleteView.as_view(), name='link_delete'),
+    url(regex=r'^vote/$', view=views.VoteFormView.as_view(), name='vote'),
     #url(r'^comments/', include('django_comments.urls'), name='comments'),
 ]
 
