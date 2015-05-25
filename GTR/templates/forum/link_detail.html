@@ -50,7 +50,6 @@
   <h3>Comments</h3>
 
   <div class="comment_form">
-  {% if user.is_authenticated %}
   {% get_comment_form for object as form %}
   <form action="{% comment_form_target %}" method="POST">
     {% csrf_token %}
@@ -60,17 +59,17 @@
     {{ form.object_pk }}
     {{ form.timestamp }}
     {{ form.security_hash }}
+    {% if user.is_authenticated %}
     <input type="hidden" name="name" value="{{ user }}" />
+    {% else %}
+    <input type="hidden" name="name" value="Anonymous" />
+    {% endif %}
     <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
     <input type="hidden" name="url" value="" />
     <input type="hidden" name="next" 
 	   value="{% url 'forum:link_detail' pk=object.id %}" />
     <input type="submit" value="Add comment" id="id_submit" />
   </form>
-{% else %}
-  <p>Please <a href="{% url 'account_login' %}">log in
-  </a> to leave a comment.</p>
-{% endif %}
   </div>
 
 
