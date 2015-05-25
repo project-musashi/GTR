@@ -36,10 +36,10 @@
 
     <div class="header navbar">
       <div class="container">
-        <a class="navbar-brand" href="/">GTR</a>
+        <a class="navbar-brand" href="/">Quit or Stay?</a>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
+          <!--<li class="active"><a href="{% url 'home' %}">Home</a></li>-->
+          <li><a href="{% url 'forum:create' %}">New Post</a></li>
 
           {% if request.user.is_authenticated %}
             <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
@@ -96,7 +96,7 @@
         }
       });
       </script>
-      
+
     {% endblock javascript %}
   </body>
 </html>

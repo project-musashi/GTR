@@ -10,45 +10,72 @@
   }
 </style>
 
-<h2><a href="{{ object.link }}">{{ object.title }}</a></h2>
-{% if object.submitter == user or user.username == 'admin' %}
-  <a href="{% url 'forum:link_update' pk=object.pk %}">Edit</a> | 
-  <a href="{% url 'forum:link_delete' pk=object.pk %}">Delete</a>
-{% endif %}
 
-<div class="desc">
-  {{ object.description }}
-</div>
 
-<p>
-<strong id="agree_count">{{ object.agree }}</strong> people like this category
-<strong id="disagree_count">{{ object.disagree }}</strong> people fuck this category
+<div class="panel panel-info">
+  <div class="panel-body">
+    <h4><a href="{{ object.link }}">{{ object.title }}</a></h4>
+    {{ object.description }}
+    </br></br>
+    {% if object.submitter == user or user.username == 'admin' %}
+      <a href="{% url 'forum:link_update' pk=object.pk %}">Edit</a> | 
+      <a href="{% url 'forum:link_delete' pk=object.pk %}">Delete</a>
+    {% endif %}
+  </div>
+  <div class="panel-footer">
 
 {% if has_commented != True %}
     <button id="agree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
     <span class="glyphicon glyphicon-thumbs-up"></span>
-    Like
+    Quit!
     </button>
+    &nbsp;&nbsp;&nbsp;<strong id="agree_count">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
     <button id="disagree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
     <span class="glyphicon glyphicon-thumbs-down"></span>
-    Fuck you
+    Stay!
     </button>
+    &nbsp;&nbsp;&nbsp;<strong id="disagree_count">{{ object.disagree }}</strong> people say you should stay!
 
 {% else %}
     <button disabled id="agree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
     <span class="glyphicon glyphicon-thumbs-up"></span>
-    Like
+    Quit!
     </button>
+    &nbsp;&nbsp;&nbsp;<strong id="agree_count">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
     <button disabled id="disagree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
     <span class="glyphicon glyphicon-thumbs-down"></span>
-    Fuck you
+    Stay!
     </button>
+    &nbsp;&nbsp;&nbsp;<strong id="disagree_count">{{ object.disagree }}</strong> people say you should stay!
 {% endif %}
+  </div>
+</div>
+
+<p>
+
 </p>
 
 <div class="comments">
-  <h3>Comments</h3>
+      <div class="page-header">
+ <h3>Comments ({% get_comment_count for link as comment_count %}{{ comment_count }})</h3>
+      </div>
+ 
 
+  <!--{% render_comment_list for object %}-->
+<div class="row"><div class="col-lg-9">
+          <div class="list-group">
+            {% get_comment_list for object as comment_list %}
+            {% for comment in comment_list %}
+            <li class="list-group-item">
+                <b>{{ comment.user_name }} - 
+                {{ comment.submit_date }} </br></b>
+                {{ comment.comment }} </br>
+            </li>
+            {% endfor %}
+          </div>
+        </div><!-- /.col-sm-4 -->
+
+</div>
   <div class="comment_form">
   {% get_comment_form for object as form %}
   <form action="{% comment_form_target %}" method="POST">
@@ -68,12 +95,12 @@
     <input type="hidden" name="url" value="" />
     <input type="hidden" name="next" 
 	   value="{% url 'forum:link_detail' pk=object.id %}" />
+    </br></br>
     <input type="submit" value="Add comment" id="id_submit" />
   </form>
   </div>
 
 
-  {% render_comment_list for object %}
 </div>
 
 {% endblock %}
