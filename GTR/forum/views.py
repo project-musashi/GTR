@@ -48,32 +48,52 @@ class LinkCreateView(LoginRequiredMixin, CreateView):
         return super(CreateView, self).form_valid(form)
 
 class LinkDetailView(DetailView):
-    model = Link
 
+    model = Link
+    def get_context_data(self, **kwargs):
+        context = super(LinkDetailView, self).get_context_data(**kwargs)
+        has_commented = self.request.session.get('has_commented_' + self.kwargs['pk']) # pk is the object id
+        #print (self.kwargs['pk'])
+        #print (has_commented) # if we don't setup the has_comment, the default value is None
+        context["has_commented"] = has_commented
+        return context
+        
 def agree(request):
     cat_id = None
     if request.method == 'GET':
         cat_id = request.GET['obj_id']
+
     agree_count = 0
+
     if cat_id:
         cat = Link.objects.get(id=int(cat_id))
     if cat:
-        agree_count = cat.agree + 1
-        cat.agree =  agree_count
-        cat.save()
+        if request.session.get('has_commented_' + cat_id, False):
+            agree_count = cat.agree
+        else:
+            request.session['has_commented_' + cat_id] = True
+            agree_count = cat.agree + 1
+            cat.agree =  agree_count
+            cat.save()
     return HttpResponse(agree_count)
 
 def disagree(request):
     cat_id = None
     if request.method == 'GET':
         cat_id = request.GET['obj_id']
+
     disagree_count = 0
+
     if cat_id:
         cat = Link.objects.get(id=int(cat_id))
     if cat:
-        disagree_count = cat.disagree + 1
-        cat.disagree =  disagree_count
-        cat.save()
+        if request.session.get('has_commented_' + cat_id, False):
+            disagree_count = cat.disagree
+        else:
+            request.session['has_commented_' + cat_id] = True
+            disagree_count = cat.disagree + 1
+            cat.disagree =  disagree_count
+            cat.save()
     return HttpResponse(disagree_count)
 
 class LinkUpdateView(LoginRequiredMixin, UpdateView):

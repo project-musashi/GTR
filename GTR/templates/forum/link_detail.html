@@ -24,12 +24,22 @@
 <strong id="agree_count">{{ object.agree }}</strong> people like this category
 <strong id="disagree_count">{{ object.disagree }}</strong> people fuck this category
 
-{% if user.is_authenticated %}
+{% if has_commented != True %}
     <button id="agree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
     <span class="glyphicon glyphicon-thumbs-up"></span>
     Like
     </button>
     <button id="disagree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+    Fuck you
+    </button>
+
+{% else %}
+    <button disabled id="agree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    Like
+    </button>
+    <button disabled id="disagree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
     <span class="glyphicon glyphicon-thumbs-down"></span>
     Fuck you
     </button>
