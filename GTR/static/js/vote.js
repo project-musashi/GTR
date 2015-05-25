@@ -17,4 +17,23 @@ jQuery(document).ready(function($)
 			  });
 		    btn.attr('disabled', false);
 		});
+
+	$('#agree').click(function(){
+    	var objid;
+    	objid = $(this).attr("data-catid");
+    	$.get('/agree/', {obj_id: objid}, function(data){
+            	   $('#agree_count').html(data);
+        	       $('#agree').attr('disabled', true);
+        	       $('#disagree').attr('disabled', true);
+    	});
+	});
+	$('#disagree').click(function(){
+    	var objid;
+    	objid = $(this).attr("data-catid");
+    	$.get('/disagree/', {obj_id: objid}, function(data){
+            	   $('#disagree_count').html(data);
+            	   $('#agree').attr('disabled', true);
+        	       $('#disagree').attr('disabled', true);
+    	});
+	});
     });

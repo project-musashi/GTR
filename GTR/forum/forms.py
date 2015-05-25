@@ -5,7 +5,7 @@ from .models import Link, Vote
 class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
-        exclude = ("submitter", "rank_score")
+        exclude = ("submitter", "rank_score", "agree", "disagree")
 
 
 class VoteForm(forms.ModelForm):

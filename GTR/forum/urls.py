@@ -14,6 +14,8 @@ urlpatterns = [
     url(regex=r'^update/(?P<pk>\d+)/$', view=views.LinkUpdateView.as_view(), name='link_update'),
     url(regex=r'^delete/(?P<pk>\d+)/$', view=views.LinkDeleteView.as_view(), name='link_delete'),
     url(regex=r'^vote/$', view=views.VoteFormView.as_view(), name='vote'),
+    url(regex=r'^agree/$', view=views.agree, name='agree'),
+    url(regex=r'^disagree/$', view=views.disagree, name='disagree'),
     #url(r'^comments/', include('django_comments.urls'), name='comments'),
 ]
 

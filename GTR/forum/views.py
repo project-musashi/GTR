@@ -50,6 +50,32 @@ class LinkCreateView(LoginRequiredMixin, CreateView):
 class LinkDetailView(DetailView):
     model = Link
 
+def agree(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['obj_id']
+    agree_count = 0
+    if cat_id:
+        cat = Link.objects.get(id=int(cat_id))
+    if cat:
+        agree_count = cat.agree + 1
+        cat.agree =  agree_count
+        cat.save()
+    return HttpResponse(agree_count)
+
+def disagree(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['obj_id']
+    disagree_count = 0
+    if cat_id:
+        cat = Link.objects.get(id=int(cat_id))
+    if cat:
+        disagree_count = cat.disagree + 1
+        cat.disagree =  disagree_count
+        cat.save()
+    return HttpResponse(disagree_count)
+
 class LinkUpdateView(LoginRequiredMixin, UpdateView):
     model = Link
     form_class = LinkForm

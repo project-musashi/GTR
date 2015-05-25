@@ -19,6 +19,8 @@ class Link(models.Model):
     description = models.TextField(blank=True)
     with_votes = LinkVoteCountManager()
     objects = models.Manager() #default manager
+    agree = models.IntegerField(default=0)
+    disagree = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title
