@@ -9,8 +9,30 @@
 {% else %}
 <ol>
 {% endif %}
+
 {% for link in object_list %}
-<li>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+        <a href="{% url 'forum:link_detail' pk=link.pk %}">
+            <b>{{ link.title }}</b>
+        </a>
+  </div>
+  <div class="panel-body">
+    <article>
+    {{ link.description }}
+    </article>
+  </div>
+  <div class="panel-footer">
+
+        <b> {{ link.agree }} </b> people say you should quit! &nbsp;&nbsp;&nbsp;<b> {{ link.disagree }} </b>people say you should stay! &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+        <a href="{% url 'forum:link_detail' pk=link.pk %}">
+            {% get_comment_count for link as comment_count %}
+            {{ comment_count }} comment{{ comment_count|pluralize }}
+        </a>
+  </div>
+</div>
+
 <!--
 <form method="post" action="{% url 'forum:vote' %}" class="vote_form">
     <li id = "id_vote"> [{{ link.votes }}] 
@@ -24,16 +46,16 @@
 	    {% else %}
 	    	<button>-</button>
 	    {% endif %}
-    -->
+
     	<a href="{% url 'forum:link_detail' pk=link.pk %}">
     		<b>{{ link.title }}</b>
     		{% get_comment_count for link as comment_count %}
     		{{ comment_count }} comment{{ comment_count|pluralize }}
     	</a>
     </li>
-<!--
 </form>
 -->
+
 {% endfor %}
 </ol>
 

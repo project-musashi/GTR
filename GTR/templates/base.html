@@ -83,6 +83,20 @@
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
       <script src="{% static 'js/vote.js' %}"></script>
+      <script src="{% static 'js/readmore.min.js' %}"></script>
+
+      <script>
+      $('article').readmore({
+        collapsedHeight: 60,
+        speed: 200,
+        afterToggle: function(trigger, element, expanded) {
+          if(! expanded) { // The "Close" link was clicked
+            $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+          }
+        }
+      });
+      </script>
+      
     {% endblock javascript %}
   </body>
 </html>
