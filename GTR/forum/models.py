@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 class LinkVoteCountManager(models.Manager):
     def get_queryset(self):
         return super(LinkVoteCountManager, self).get_queryset().annotate(
-            votes=Count('vote')).order_by("-votes")
+            votes=Count('vote')).order_by("-submitted_on","-votes")
 
 class Link(models.Model):
     title = models.CharField("Headline", max_length=100)

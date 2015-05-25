@@ -11,7 +11,7 @@
 </style>
 
 <h2><a href="{{ object.link }}">{{ object.title }}</a></h2>
-{% if object.submitter == user %}
+{% if object.submitter == user or user.username == 'admin' %}
   <a href="{% url 'forum:link_update' pk=object.pk %}">Edit</a> | 
   <a href="{% url 'forum:link_delete' pk=object.pk %}">Delete</a>
 {% endif %}

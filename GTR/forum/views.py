@@ -141,28 +141,4 @@ class VoteFormBaseView(LoginRequiredMixin, FormView):
 
 class VoteFormView(JSONFormMixin, VoteFormBaseView):
     pass
-'''
-class VoteFormView(LoginRequiredMixin, FormView):
-    form_class = VoteForm
 
-    def form_valid(self, form):
-        link = get_object_or_404(Link, pk=form.data["link"])
-        user = self.request.user
-        prev_votes = Vote.objects.filter(voter=user, link=link)
-        has_voted = (prev_votes.count() > 0)
-
-        if not has_voted:
-            # add vote
-            Vote.objects.create(voter=user, link=link)
-            print("voted")
-        else:
-            # delete vote
-            prev_votes[0].delete()
-            print("unvoted")
-
-        return redirect("forum:forum")
-
-    def form_invalid(self, form):
-        print("invalid")
-        return redirect("forum:forum")
-'''
