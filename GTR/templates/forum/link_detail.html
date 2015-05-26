@@ -55,52 +55,47 @@
 
 </p>
 
-<div class="detailBox">
-    <div class="titleBox">
-        <label>Comment Box({% get_comment_count for link as comment_count %}{{ comment_count }})</label>
+<span class="glyphicon glyphicon-comment"></span>
+<label>Comments</label>
+<span class="label label-info">{% get_comment_count for link as comment_count %}{{ comment_count }}</span>
+<!--{% render_comment_list for object %}-->
+{% get_comment_list for object as comment_list %}
+{% for comment in comment_list %}
+<li class="list-group-item">
+        <b>{{ comment.user_name }}</br></b>
+        {{ comment.comment }} </br>
+        <div class="mic-info">{{ comment.submit_date }}</div>
+</li>
+{% endfor %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="widget-area no-padding blank">
+            <div class="status-upload">
+                {% get_comment_form for object as form %}
+                <form action="{% comment_form_target %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.honeypot }}
+                    {{ form.content_type }}
+                    {{ form.object_pk }}
+                    {{ form.timestamp }}
+                    {{ form.security_hash }}
+                    <textarea name="comment" required maxlength=3000 placeholder="Your comments"></textarea>
+                    <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
+                    <input type="hidden" name="url" value="" />
+                    <input type="hidden" name="next" value="{% url 'forum:link_detail' pk=object.id %}" />     
+                    {% if user.is_authenticated %}
+                        <input type="hidden" name="name" value="{{ user }}" />
+                    {% else %}
+                         Nickname: <input type="text" name="name" data-placement="bottom" placeholder="Your Nickname" required/>
+                    {% endif %}
+                    <button type="submit" class="btn btn-success green" value="Add comment" id="id_submit"><i class="fa fa-share"></i>Comment</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="actionBox"></div>
-    <div class="commentList">
-  <!--{% render_comment_list for object %}-->
-        {% get_comment_list for object as comment_list %}
-        {% for comment in comment_list %}
-        <li class="list-group-item">
-            <div class="commentText">
-                <b>{{ comment.user_name }}</br></b>
-                {{ comment.comment }} </br>
-                <small>{{ comment.submit_date }}</small>
-             </div>
-        </li>
-        {% endfor %}
-    </div><!-- /.col-sm-4 -->
-
 </div>
-  <div class="comment_form">
-  {% get_comment_form for object as form %}
-  <form action="{% comment_form_target %}" method="POST">
-    {% csrf_token %}
-    {{ form.honeypot }}
-    {{ form.content_type }}
-    {{ form.object_pk }}
-    {{ form.timestamp }}
-    {{ form.security_hash }}
-    {% if user.is_authenticated %}
-    <input type="hidden" name="name" value="{{ user }}" />
-    {% else %}
-    Nickname: <input type="text" name="name" required/><br><br>
-    {% endif %}
-    <textarea name="comment" required maxlength=3000>Enter text here...</textarea>
-    <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
-    <input type="hidden" name="url" value="" />
-    <input type="hidden" name="next" 
-	   value="{% url 'forum:link_detail' pk=object.id %}" />
-    </br></br>
-    <input type="submit" value="Add comment" id="id_submit" />
-  </form>
-  </div>
-
-
-</div>
-
 {% endblock %}
 
