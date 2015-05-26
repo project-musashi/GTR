@@ -4,12 +4,6 @@
 
 {% block content %}
 
-{% if is_paginated %}
-<ol start="{{ page_obj.start_index }}">
-{% else %}
-<ol>
-{% endif %}
-
 {% for link in object_list %}
 
 <div class="panel panel-info">
@@ -53,7 +47,6 @@
 -->
 
 {% endfor %}
-</ol>
 
 {% if is_paginated %}
 <ul class="pagination">

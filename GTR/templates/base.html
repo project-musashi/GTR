@@ -76,9 +76,9 @@
             </ul>
         </div>
     </nav>
-    
-    <div class="container">
 
+    <div class="container">
+      <div class="jumbotron">
       {% if messages %}
           {% for message in messages %}
               <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
@@ -88,7 +88,7 @@
       {% block content %}
         <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
-
+      </div>
     </div> <!-- /container -->
 
     {% block modal %}{% endblock modal %}
