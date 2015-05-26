@@ -59,8 +59,6 @@
       <div class="page-header">
  <h3>Comments ({% get_comment_count for link as comment_count %}{{ comment_count }})</h3>
       </div>
- 
-
   <!--{% render_comment_list for object %}-->
 <div class="row"><div class="col-lg-9">
           <div class="list-group">
@@ -80,17 +78,18 @@
   {% get_comment_form for object as form %}
   <form action="{% comment_form_target %}" method="POST">
     {% csrf_token %}
+    {% if user.is_authenticated %}
+    <input type="hidden" name="name" value="{{ user }}" />
+    {% else %}
+    Nickname: <input type="text" name="name"/>
+    <br><br>
+    {% endif %}
     {{ form.comment }}
     {{ form.honeypot }}
     {{ form.content_type }}
     {{ form.object_pk }}
     {{ form.timestamp }}
     {{ form.security_hash }}
-    {% if user.is_authenticated %}
-    <input type="hidden" name="name" value="{{ user }}" />
-    {% else %}
-    <input type="hidden" name="name" value="Anonymous" />
-    {% endif %}
     <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
     <input type="hidden" name="url" value="" />
     <input type="hidden" name="next" 
