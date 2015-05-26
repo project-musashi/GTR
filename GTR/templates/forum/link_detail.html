@@ -55,23 +55,24 @@
 
 </p>
 
-<div class="comments">
-      <div class="page-header">
- <h3>Comments ({% get_comment_count for link as comment_count %}{{ comment_count }})</h3>
-      </div>
+<div class="detailBox">
+    <div class="titleBox">
+        <label>Comment Box({% get_comment_count for link as comment_count %}{{ comment_count }})</label>
+    </div>
+    <div class="actionBox"></div>
+    <div class="commentList">
   <!--{% render_comment_list for object %}-->
-<div class="row"><div class="col-lg-9">
-          <div class="list-group">
-            {% get_comment_list for object as comment_list %}
-            {% for comment in comment_list %}
-            <li class="list-group-item">
-                <b>{{ comment.user_name }} - 
-                {{ comment.submit_date }} </br></b>
+        {% get_comment_list for object as comment_list %}
+        {% for comment in comment_list %}
+        <li class="list-group-item">
+            <div class="commentText">
+                <b>{{ comment.user_name }}</br></b>
                 {{ comment.comment }} </br>
-            </li>
-            {% endfor %}
-          </div>
-        </div><!-- /.col-sm-4 -->
+                <small>{{ comment.submit_date }}</small>
+             </div>
+        </li>
+        {% endfor %}
+    </div><!-- /.col-sm-4 -->
 
 </div>
   <div class="comment_form">
