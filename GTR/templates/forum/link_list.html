@@ -6,15 +6,22 @@
 
 {% for link in object_list %}
 
+<style>
+    h4 { display:inline; }
+</style>
+
 <div class="panel panel-info">
   <div class="panel-body">
     <h4><a href="{% url 'forum:link_detail' pk=link.pk %}">{{ link.title }}</a></h4>
+    {% if link.self_description%}
+    <small class="mic-info"><strong><i> - {{ link.self_description }}</i></strong></small>
+    {% endif %}
+    <br/><br/>
     <article>
     {{ link.description }}
     </article>
   </div>
   <div class="panel-footer">
-
         <b> {{ link.agree }} </b> people say you should quit! &nbsp; <b> {{ link.disagree }} </b>people say you should stay! &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
         <a href="{% url 'forum:link_detail' pk=link.pk %}">
             {% get_comment_count for link as comment_count %}

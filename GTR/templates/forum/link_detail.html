@@ -5,6 +5,8 @@
 {% block content %}
 
 <style>
+  h4 { display:inline; }
+
   #id_honeypot {
     display: none;
   }
@@ -15,8 +17,14 @@
 <div class="panel panel-info">
   <div class="panel-body">
     <h4><a href="{{ object.link }}">{{ object.title }}</a></h4>
+    {% if object.self_description%}
+    <small class="mic-info"><strong><i> - {{ object.self_description }}</i></strong></small>
+    {% endif %}
+    <br/><br/>
+    <div>
     {{ object.description }}
-    </br></br>
+    </div>
+    <br/>
     {% if object.submitter == user or user.username == 'admin' %}
       <a href="{% url 'forum:link_update' pk=object.pk %}">Edit</a> | 
       <a href="{% url 'forum:link_delete' pk=object.pk %}">Delete</a>
@@ -55,9 +63,11 @@
 
 </p>
 
-<span class="glyphicon glyphicon-comment"></span>
-<label>Comments</label>
-<span class="label label-info">{% get_comment_count for link as comment_count %}{{ comment_count }}</span>
+<li class="list-group-item">
+  <span class="glyphicon glyphicon-comment"></span>
+    Comments
+  <span class="label label-info">{% get_comment_count for link as comment_count %}{{ comment_count }}</span>
+</li>
 <!--{% render_comment_list for object %}-->
 {% get_comment_list for object as comment_list %}
 {% for comment in comment_list %}
