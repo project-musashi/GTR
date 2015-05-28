@@ -10,6 +10,26 @@
   #id_honeypot {
     display: none;
   }
+
+  .comment_header{
+    background-color: #eee;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 4px 0px 0px; 
+  }
+
+  .comment_form{
+    position: relative;
+    padding:30px !important;
+    padding-top:0 !important;
+    margin-top:0 !important;
+    background-color: #eee;
+    text-align:center;
+    margin-bottom: 0 !important;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px; 
+  }
 </style>
 
 
@@ -63,9 +83,9 @@
 
 </p>
 
-<li class="list-group-item">
-  <span class="glyphicon glyphicon-comment"></span>
-    Comments
+<li class="list-group-item comment_header">
+    <span class="glyphicon glyphicon-comment"></span>
+  <h4> Comments </h4>
   <span class="label label-info">{% get_comment_count for link as comment_count %}{{ comment_count }}</span>
 </li>
 <!--{% render_comment_list for object %}-->
@@ -78,14 +98,12 @@
 </li>
 {% endfor %}
 
-
-
-<div class="container">
+<div class="comment_form">
     <div class="row">
         <div class="widget-area no-padding blank">
             <div class="status-upload">
                 {% get_comment_form for object as form %}
-                <form action="{% comment_form_target %}" method="POST">
+                <form action="{% comment_form_target %}" method="POST" class="link-form">
                     {% csrf_token %}
                     {{ form.honeypot }}
                     {{ form.content_type }}
@@ -101,11 +119,12 @@
                     {% else %}
                          Nickname: <input type="text" name="name" data-placement="bottom" placeholder="Your Nickname" required/>
                     {% endif %}
-                    <button type="submit" class="btn btn-success green" value="Add comment" id="id_submit"><i class="fa fa-share"></i>Submit</button>
+                    <button type="submit" class="btn main-btn pull-left" value="Add comment" id="id_submit"><i class="fa fa-share"></i>Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
 
