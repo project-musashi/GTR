@@ -53,28 +53,28 @@
   <div class="panel-footer">
 
 {% if has_commented != True %}
-    <button id="agree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
+    <button id="agree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary agree" type="button">
     <span class="glyphicon glyphicon-thumbs-up"></span>
     Quit!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="agree_count">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
-    <button id="disagree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
+    &nbsp;&nbsp;&nbsp;<strong id="agree_count_{{ object.id }}">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
+    <button id="disagree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary disagree" type="button">
     <span class="glyphicon glyphicon-thumbs-down"></span>
     Stay!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="disagree_count">{{ object.disagree }}</strong> people say you should stay!
+    &nbsp;&nbsp;&nbsp;<strong id="disagree_count_{{ object.id }}">{{ object.disagree }}</strong> people say you should stay!
 
 {% else %}
-    <button disabled id="agree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
+    <button disabled id="agree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary agree" type="button">
     <span class="glyphicon glyphicon-thumbs-up"></span>
     Quit!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="agree_count">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
-    <button disabled id="disagree" data-catid="{{ object.id }}" class="btn btn-primary" type="button">
+    &nbsp;&nbsp;&nbsp;<strong id="agree_count_{{ object.id }}">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
+    <button disabled id="disagree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary disagree" type="button">
     <span class="glyphicon glyphicon-thumbs-down"></span>
     Stay!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="disagree_count">{{ object.disagree }}</strong> people say you should stay!
+    &nbsp;&nbsp;&nbsp;<strong id="disagree_count_{{ object.id }}">{{ object.disagree }}</strong> people say you should stay!
 {% endif %}
   </div>
 </div>
