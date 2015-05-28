@@ -7,9 +7,9 @@ class LinkForm(forms.ModelForm):
         model = Link
         exclude = ("submitter", "rank_score", "agree", "disagree", "url")
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Fill in your headline'}),
-            'self_description': forms.TextInput(attrs={'placeholder':'e.g. mid 20s/software engineer/$80k-90k salaries/work in bay area'}),
-            'description': forms.TextInput(attrs={'placeholder': 'Describe your work'})
+            'title': forms.TextInput(attrs={'placeholder': 'Headline', 'class':'form-control', 'required':''}),
+            'self_description': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Self description (e.g. mid 20s/software engineer/$80k-90k salaries/work in bay area)'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Tell us your story', 'required':''})
         }
 
 

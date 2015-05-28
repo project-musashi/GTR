@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<form method="post" action="">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Add">
-</form>
+<div class="row">
+    <legend>New Post</legend>
+    <form method="post" action="" class="link-form">
+        <div class="col-md-12">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn main-btn pull-right">Add Post</button>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

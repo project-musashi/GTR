@@ -11,13 +11,13 @@ class LinkVoteCountManager(models.Manager):
             votes=Count('vote')).order_by("-submitted_on","-votes")
 
 class Link(models.Model):
-    title = models.CharField("Headline", max_length=100)
+    title = models.CharField("", max_length=100)
     submitter = models.ForeignKey(User)
     submitted_on = models.DateTimeField(auto_now_add=True)
     rank_score = models.FloatField(default=0.0)
     url = models.URLField("URL", max_length=250, blank=True)
-    self_description = models.TextField("Self description", blank=True)
-    description = models.TextField(blank=True)
+    self_description = models.TextField("", blank=True)
+    description = models.TextField("")
     with_votes = LinkVoteCountManager()
     objects = models.Manager() #default manager
     agree = models.IntegerField(default=0)

@@ -124,7 +124,14 @@ body {
 .panel-footer {
   background-color: #ffffff;
 }
-
+/*link form */
+.link-form{ margin-top:15px;}
+.link-form .textarea{ min-height:220px; resize:none;}
+.form-control{ box-shadow:none; border-color:#eee; height:49px;}
+.form-control:focus{ box-shadow:none; border-color:#00b09c;}
+.form-control-feedback{ line-height:50px;}
+.main-btn{ background:#00b09c; border-color:#00b09c; color:#fff;}
+.main-btn:hover{ background:#00a491;color:#fff;}
 /*comment display*/
 .mic-info { color: #666666;font-size: 11px; }
 /*comment box input*/
