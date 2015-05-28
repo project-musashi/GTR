@@ -22,11 +22,37 @@
     </article>
   </div>
   <div class="panel-footer">
+<!--
         <b> {{ link.agree }} </b> people say you should quit! &nbsp; <b> {{ link.disagree }} </b>people say you should stay! &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
         <a href="{% url 'forum:link_detail' pk=link.pk %}">
             {% get_comment_count for link as comment_count %}
             {{ comment_count }} comment{{ comment_count|pluralize }}
         </a>
+    -->
+{% if link.pk in has_commented %}
+    <button disabled id="agree" data-catid="{{ link.pk }}" class="btn btn-primary" type="button">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    Quit!
+    </button>
+    &nbsp;&nbsp;&nbsp;<strong id="agree_count">{{ link.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
+    <button disabled id="disagree" data-catid="{{ link.pk }}" class="btn btn-primary" type="button">
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+    Stay!
+    </button>
+    &nbsp;&nbsp;&nbsp;<strong id="disagree_count">{{ link.disagree }}</strong> people say you should stay!
+
+{% else %}
+    <button id="agree" data-catid="{{ link.pk }}" class="btn btn-primary" type="button">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    Quit!
+    </button>
+    &nbsp;&nbsp;&nbsp;<strong id="agree_count">{{ link.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
+    <button id="disagree" data-catid="{{ link.pk }}" class="btn btn-primary" type="button">
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+    Stay!
+    </button>
+    &nbsp;&nbsp;&nbsp;<strong id="disagree_count">{{ link.disagree }}</strong> people say you should stay!
+{% endif %}
   </div>
 </div>
 

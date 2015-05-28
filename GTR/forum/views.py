@@ -35,6 +35,13 @@ class LinkListView(ListView):
 
         context["no_jumbotron"] = True
 
+        has_commented =[] # empty list
+        for link in context["object_list"]:
+            if (True == self.request.session.get('has_commented_' + str(link.id))): # pk is the object id
+                has_commented.append(link.id)
+        
+        context["has_commented"] = has_commented
+
         return context
 
 class LinkCreateView(LoginRequiredMixin, CreateView):
