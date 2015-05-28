@@ -127,8 +127,8 @@ body {
 /*link form */
 .link-form{ margin-top:15px;}
 .link-form .textarea{ min-height:220px; resize:none;}
-.form-control{ box-shadow:none; border-color:#eee; height:49px;}
-.form-control:focus{ box-shadow:none; border-color:#00b09c;}
+.link-form-control{ box-shadow:none; border-color:#eee; height:49px;}
+.link-form-control:focus{ box-shadow:none; border-color:#00b09c;}
 .form-control-feedback{ line-height:50px;}
 .main-btn{ background:#00b09c; border-color:#00b09c; color:#fff;}
 .main-btn:hover{ background:#00a491;color:#fff;}
@@ -241,7 +241,7 @@ border: medium none;
 border-radius: 4px;
 color: #fff;
 float: right;
-font-family: Lato;
+#font-family: Lato;
 font-size: 14px;
 letter-spacing: 0.3px;
 margin-right: 9px;
