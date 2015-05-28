@@ -92,12 +92,12 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='GTR <noreply@example.com>')
+                         default='QuitorStay <quitorstay.herokuapp.com>')
 EMAIL_HOST = env("DJANGO_EMAIL_HOST", default='smtp.sendgrid.com')
 EMAIL_HOST_PASSWORD = env("SENDGRID_PASSWORD")
 EMAIL_HOST_USER = env('SENDGRID_USERNAME')
 EMAIL_PORT = env.int("EMAIL_PORT", default=587)
-EMAIL_SUBJECT_PREFIX = env("EMAIL_SUBJECT_PREFIX", default='[GTR] ')
+EMAIL_SUBJECT_PREFIX = env("EMAIL_SUBJECT_PREFIX", default='[QuitorStay] ')
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
