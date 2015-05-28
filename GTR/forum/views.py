@@ -32,6 +32,9 @@ class LinkListView(ListView):
             voted = voted.filter(link_id__in=links_in_page)
             voted = voted.values_list('link_id', flat=True)
             context["voted"] = voted
+
+        context["no_jumbotron"] = True
+
         return context
 
 class LinkCreateView(LoginRequiredMixin, CreateView):
@@ -56,6 +59,8 @@ class LinkDetailView(DetailView):
         #print (self.kwargs['pk'])
         #print (has_commented) # if we don't setup the has_comment, the default value is None
         context["has_commented"] = has_commented
+        context["no_jumbotron"] = True
+
         return context
         
 def agree(request):
