@@ -18,22 +18,24 @@ jQuery(document).ready(function($)
 		    btn.attr('disabled', false);
 		});
 
-	$('#agree').click(function(){
+	$('.agree').click(function(){
     	var objid;
     	objid = $(this).attr("data-catid");
+    	var old_this = $(this);
     	$.get('/agree/', {obj_id: objid}, function(data){
-            	   $('#agree_count').html(data);
-        	       $('#agree').attr('disabled', true);
-        	       $('#disagree').attr('disabled', true);
+    	           $("#agree_count_"+objid).html(data);
+        	       $("#agree_button_"+objid).attr('disabled', true);
+        	       $("#disagree_button_"+objid).attr('disabled', true);
     	});
 	});
-	$('#disagree').click(function(){
+	$('.disagree').click(function(){
     	var objid;
     	objid = $(this).attr("data-catid");
+    	var old_this = $(this);
     	$.get('/disagree/', {obj_id: objid}, function(data){
-            	   $('#disagree_count').html(data);
-            	   $('#agree').attr('disabled', true);
-        	       $('#disagree').attr('disabled', true);
+    	           $("#disagree_count_"+objid).html(data);
+                   $("#agree_button_"+objid).attr('disabled', true);
+                   $("#disagree_button_"+objid).attr('disabled', true);
     	});
 	});
     });
