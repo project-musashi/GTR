@@ -15,8 +15,8 @@
     <h4><a href="{% url 'forum:link_detail' pk=link.pk %}">{{ link.title }}</a></h4>
     {% if link.self_description%}
     <small class="mic-info"><strong><i> - {{ link.self_description }}</i></strong></small>
-    <small class="mic-info" style="float:right;"><strong>{{link.submitted_on}}</strong></small>
     {% endif %}
+    <small class="mic-info" style="float:right;"><strong>{{link.submitted_on}}</strong></small>
     <br/><br/>
     <article>
     {{ link.description }}
