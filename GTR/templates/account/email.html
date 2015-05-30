@@ -9,10 +9,10 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
-      <h2>{% trans "E-mail Addresses" %}</h2>
+    <div class="col-md-12">
+      <legend>{% trans "E-mail Addresses" %}</legend>
       {% if user.emailaddress_set.all %}
-      <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+      {% trans 'The following e-mail addresses are associated with your account:' %}
           
       <form action="{% url 'account_email' %}" class="email_list" method="post">
       {% csrf_token %}
@@ -26,15 +26,15 @@
 
       {{ emailaddress.email }}
           {% if emailaddress.verified %}
-          <span class="verified">{% trans "Verified" %}</span>
+          <span class="verified" style="color:green" ><i>{% trans "Verified" %}</i></span>
           {% else %}
-          <span class="unverified">{% trans "Unverified" %}</span>
+          <span class="unverified" style="color:red"><i>{% trans "Unverified" %}</i></span>
           {% endif %}
-            {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
+            {% if emailaddress.primary %}<span class="primary" style="color:green">{% trans "Primary" %}</span>{% endif %}
       </label>
       </div>
         {% endfor %}
-
+      <br>
       <div class="buttonHolder">
             <button class="secondaryAction" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
             <button class="secondaryAction" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
@@ -49,8 +49,8 @@
 
       {% endif %}
 
-
-          <h2>{% trans "Add E-mail Address" %}</h2>
+          <br>
+          <legend>{% trans "Add E-mail Address" %}</legend>
           
           <form method="post" action="." class="add_email">
               {% csrf_token %}

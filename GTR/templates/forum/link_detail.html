@@ -110,7 +110,7 @@
                     {{ form.object_pk }}
                     {{ form.timestamp }}
                     {{ form.security_hash }}
-                    <textarea name="comment" required maxlength=3000 placeholder="Your comments"></textarea>
+                    <textarea name="comment" required maxlength=3000 class="form-control link-form-control" placeholder="Your comments"></textarea>
                     <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
                     <input type="hidden" name="url" value="" />
                     <input type="hidden" name="next" value="{% url 'forum:link_detail' pk=object.id %}" />     
