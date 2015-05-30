@@ -16,6 +16,7 @@ urlpatterns = [
     url(regex=r'^vote/$', view=views.VoteFormView.as_view(), name='vote'),
     url(regex=r'^agree/$', view=views.agree, name='agree'),
     url(regex=r'^disagree/$', view=views.disagree, name='disagree'),
+    url(regex=r'^search/$', view=views.SearchListView.as_view(), name='search'),
     #url(r'^comments/', include('django_comments.urls'), name='comments'),
 ]
 

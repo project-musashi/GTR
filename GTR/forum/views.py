@@ -17,7 +17,29 @@ from django.shortcuts import get_object_or_404
 from django.views.generic.edit import FormView
 import json
 from django.http import HttpResponse
+import operator
+from functools import reduce
+from django.db.models import Q
 
+
+
+class SearchListView(ListView):
+    model = Link
+    queryset = Link.with_votes.all()
+    paginate_by = 10
+
+    def get_queryset(self):
+        result = super(SearchListView, self).get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            result = result.filter(
+                reduce(operator.and_,
+                       (Q(title__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(description__icontains=q) for q in query_list))
+            )
+        return result
 
 class LinkListView(ListView):
     model = Link

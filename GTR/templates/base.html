@@ -60,9 +60,9 @@
                     </ul>
                 </li> -->
             </ul>
-            <form role="search" class="navbar-form navbar-left">
+            <form id="searchform" action="{% url 'forum:search' %}" method="get" accept-charset="utf-8" role="search" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" placeholder="Search" class="form-control">
+                    <input id="searchbox" name="q" type="text" placeholder="Search" class="form-control">
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
