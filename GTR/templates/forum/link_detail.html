@@ -11,6 +11,12 @@
     display: none;
   }
 
+  .btn {
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+  }
+
   .comment_header{
     background-color: #eee;
     -moz-border-radius: 0px;
@@ -54,28 +60,39 @@
   <div class="panel-footer">
 
 {% if has_commented != True %}
-    <button id="agree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary agree" type="button">
-    <span class="glyphicon glyphicon-thumbs-up"></span>
+
+    <button data-catid="{{ object.pk }}" id="agree_button_{{ object.pk }}" class="btn btn-primary agree" type="button">
+    <span class="glyphicon glyphicon-hand-right"></span>
     Quit!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="agree_count_{{ object.id }}">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
-    <button id="disagree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary disagree" type="button">
-    <span class="glyphicon glyphicon-thumbs-down"></span>
+
+    <span class="label label-success"><strong id="agree_count_{{ object.pk }}">{{ object.agree }}</strong></span>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button data-catid="{{ object.pk }}" id="disagree_button_{{ object.pk }}" class="btn btn-primary disagree" type="button">
+    <span class="glyphicon glyphicon-hand-down"></span>
     Stay!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="disagree_count_{{ object.id }}">{{ object.disagree }}</strong> people say you should stay!
+    
+    <span class="label label-danger"><strong id="disagree_count_{{ object.pk }}">{{ object.disagree }}</strong></span>
 
 {% else %}
-    <button disabled id="agree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary agree" type="button">
-    <span class="glyphicon glyphicon-thumbs-up"></span>
+    <button disabled data-catid="{{ object.pk }}" id="agree_button_{{ object.pk }}" class="btn btn-primary agree" type="button">
+    <span class="glyphicon glyphicon-hand-right"></span>
     Quit!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="agree_count_{{ object.id }}">{{ object.agree }}</strong> people say you should quit! &nbsp;&nbsp;&nbsp;
-    <button disabled id="disagree_button_{{ object.id }}" data-catid="{{ object.id }}" class="btn btn-primary disagree" type="button">
-    <span class="glyphicon glyphicon-thumbs-down"></span>
+
+    <span class="label label-success"><strong id="agree_count_{{ object.pk }}">{{ object.agree }}</strong></span>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button disabled data-catid="{{ object.pk }}" id="disagree_button_{{ object.pk }}" class="btn btn-primary disagree" type="button">
+    <span class="glyphicon glyphicon-hand-down"></span>
     Stay!
     </button>
-    &nbsp;&nbsp;&nbsp;<strong id="disagree_count_{{ object.id }}">{{ object.disagree }}</strong> people say you should stay!
+    
+    <span class="label label-danger"><strong id="disagree_count_{{ object.pk }}">{{ object.disagree }}</strong></span>
 {% endif %}
   </div>
 </div>
