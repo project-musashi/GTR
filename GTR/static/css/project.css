@@ -130,8 +130,26 @@ body a:hover{
 }
 
 .panel-footer {
-  background-color: #ffffff;
+  background-color: #eee;
 }
+
+/* Control opacity of panels */
+.panel-transparent {
+  background: none;
+}
+
+.panel-transparent .panel-heading{
+  background-color: rgba(255, 255, 255, 0.5);!important;
+}
+
+.panel-transparent .panel-body{
+  background-color: rgba(255, 255, 255, 0.5);!important;
+}
+
+.panel-transparent .panel-footer {
+  background-color: rgba(255, 255, 255, 0.5);!important;
+}
+
 /*link form */
 .link-form{ margin-top:15px;}
 .link-form .textarea{ min-height:220px; resize:none;}
