@@ -28,6 +28,12 @@ class SearchListView(ListView):
     queryset = Link.with_votes.all()
     paginate_by = 10
 
+    def get_context_data(self, **kwargs):
+        context = super(SearchListView, self).get_context_data(**kwargs)
+        context["no_jumbotron"] = True
+        context["search_results"] = True
+        return context
+
     def get_queryset(self):
         result = super(SearchListView, self).get_queryset()
         query = self.request.GET.get('q')
@@ -44,7 +50,7 @@ class SearchListView(ListView):
 class LinkListView(ListView):
     model = Link
     queryset = Link.with_votes.all()
-    paginate_by = 5
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super(LinkListView, self).get_context_data(**kwargs)

@@ -4,11 +4,20 @@
 
 {% block content %}
 
-{% for link in object_list %}
-
 <style>
+    h3 { color: #ffffff;}
     h4 { display:inline; }
 </style>
+
+{% if search_results %}
+    {% if object_list.count == 0 %}
+        <h3> No results found.</h3>
+    {% else %}
+        <h3> Search Results: {{ object_list.count }} </h3> </br>
+    {% endif %}
+{% endif %}
+
+{% for link in object_list %}
 
 <div class="panel panel-info">
   <div class="panel-body">
@@ -54,6 +63,11 @@
     </button>
     &nbsp;&nbsp;&nbsp;<strong id="disagree_count_{{ link.pk }}">{{ link.disagree }}</strong> people say you should stay!
 {% endif %}
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="{% url 'forum:link_detail' pk=link.pk %}">
+    <span class="glyphicon glyphicon-comment"></span>
+    <span class="label label-info">{% get_comment_count for link as comment_count %}{{ comment_count }}</span>
+  </a>
   </div>
 </div>
 

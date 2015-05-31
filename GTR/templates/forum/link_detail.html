@@ -24,7 +24,7 @@
     padding-top:0 !important;
     margin-top:0 !important;
     background-color: #eee;
-    text-align:center;
+    text-align:left;
     margin-bottom: 0 !important;
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px 0px 4px 4px;
@@ -103,6 +103,8 @@
     <div class="row">
         <div class="widget-area no-padding blank">
             <div class="status-upload">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <h4> Reply </h4>
                 {% get_comment_form for object as form %}
                 <form action="{% comment_form_target %}" method="POST" class="link-form">
                     {% csrf_token %}
@@ -111,15 +113,15 @@
                     {{ form.object_pk }}
                     {{ form.timestamp }}
                     {{ form.security_hash }}
-                    <textarea name="comment" required maxlength=3000 class="form-control link-form-control" placeholder="Your comments"></textarea>
-                    <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
-                    <input type="hidden" name="url" value="" />
-                    <input type="hidden" name="next" value="{% url 'forum:link_detail' pk=object.id %}" />     
                     {% if user.is_authenticated %}
                         <input type="hidden" name="name" value="{{ user }}" />
                     {% else %}
-                         Nickname: <input type="text" name="name" data-placement="bottom" placeholder="Your Nickname" required/>
+                        <input type="text" name="name" class="form-control link-form-control" placeholder="Your Nickname" required/>
                     {% endif %}
+                    <textarea name="comment" maxlength=3000 class="link-form link-form-control" placeholder="Your comments" required/></textarea>
+                    <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
+                    <!--<input type="hidden" name="url" value="" />-->
+                    <input type="hidden" name="next" value="{% url 'forum:link_detail' pk=object.id %}" />
                     <button type="submit" class="btn main-btn pull-left" value="Add comment" id="id_submit"><i class="fa fa-share"></i>Submit</button>
                 </form>
             </div>
