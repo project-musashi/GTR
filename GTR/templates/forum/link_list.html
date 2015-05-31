@@ -53,10 +53,8 @@
     </button>
     
     <span class="label label-danger"><strong id="disagree_count_{{ link.pk }}">{{ link.disagree }}</strong></span>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <a href="{% url 'forum:link_detail' pk=link.pk %}">
+    
+    <a href="{% url 'forum:link_detail' pk=link.pk %}" style="float:right;">
         <span class="glyphicon glyphicon-comment"></span>
         <span class="label label-info">{% get_comment_count for link as comment_count %}{{ comment_count }}</span>
     </a>

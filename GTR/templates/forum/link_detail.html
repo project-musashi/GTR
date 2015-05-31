@@ -51,8 +51,8 @@
     <div>
     {{ object.description }}
     </div>
-    <br/>
     {% if object.submitter == user or user.username == 'admin' %}
+      <br/>
       <a href="{% url 'forum:link_update' pk=object.pk %}">Edit</a> | 
       <a href="{% url 'forum:link_delete' pk=object.pk %}">Delete</a>
     {% endif %}
