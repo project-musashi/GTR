@@ -40,7 +40,7 @@
     {% if object.self_description%}
     <small class="mic-info"><strong><i> - {{ object.self_description }}</i></strong></small>
     {% endif %}
-    <small class="mic-info" style="float:right;"><strong>{{object.submitted_on}}</strong></small>
+    <small class="mic-info" style="float:right;"><strong>({{object.submitter}}) {{object.submitted_on}}</strong></small>
     <br/><br/>
     <div>
     {{ object.description }}
