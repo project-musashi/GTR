@@ -14,12 +14,21 @@
     }
 </style>
 
+
 {% if search_results %}
     {% if object_list.count == 0 %}
         <h3> No results found.</h3>
     {% else %}
         <h3> Search Results: {{ object_list.count }} </h3> </br>
     {% endif %}
+{% else %}
+
+<div class="panel panel-info" style="border-color: #112e43;background-color: #112e43;">
+  <div class="panel-body">
+      <h3>Thinking of quitting? Tell us your story. (╯°□°)╯︵ ┻━┻ </h3></br>
+  </div>
+</div>
+
 {% endif %}
 
 {% for link in object_list %}
