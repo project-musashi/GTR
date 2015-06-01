@@ -16,7 +16,7 @@ class Link(models.Model):
     submitted_on = models.DateTimeField(auto_now_add=True)
     rank_score = models.FloatField(default=0.0)
     url = models.URLField("URL", max_length=250, blank=True)
-    self_description = models.TextField("", blank=True)
+    self_description = models.CharField("", blank=True, max_length=75)
     description = models.TextField("")
     with_votes = LinkVoteCountManager()
     objects = models.Manager() #default manager

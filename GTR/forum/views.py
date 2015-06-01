@@ -43,7 +43,9 @@ class SearchListView(ListView):
                 reduce(operator.and_,
                        (Q(title__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                       (Q(description__icontains=q) for q in query_list))
+                       (Q(description__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(self_description__icontains=q) for q in query_list))
             )
         return result
 
