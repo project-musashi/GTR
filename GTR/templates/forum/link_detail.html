@@ -132,9 +132,9 @@
                     {% if user.is_authenticated %}
                         <input type="hidden" name="name" value="{{ user }}" />
                     {% else %}
-                        <input type="text" name="name" class="form-control link-form-control" placeholder="Your Nickname" required/>
+                        <input type="text" name="name" class="form-control link-form-control" placeholder="Your Nickname" style="border: 1px solid #cccccc;" required/>
                     {% endif %}
-                    <textarea name="comment" maxlength=3000 class="link-form link-form-control" placeholder="Your comments" required/></textarea>
+                    <textarea name="comment" maxlength=3000 class="link-form link-form-control" placeholder="Your comments" style="border: 1px solid #cccccc;" required/></textarea>
                     <input type="hidden" name="email" value="{{ user.email|default:'d@ummy.com' }}" />
                     <!--<input type="hidden" name="url" value="" />-->
                     <input type="hidden" name="next" value="{% url 'forum:link_detail' pk=object.id %}" />

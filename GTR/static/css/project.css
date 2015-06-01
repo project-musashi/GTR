@@ -169,7 +169,7 @@ body a:hover{
 /*link form */
 .link-form{ margin-top:15px;}
 .link-form .textarea{ min-height:220px; resize:none;}
-.link-form-control{ box-shadow:none; border-color:#eee; height:49px; padding-left:20px; font-size: 10pt;}
+.link-form-control{ box-shadow:none; border-color:#cccccc; height:49px; padding-left:20px; font-size: 10pt;}
 .link-form-control:focus{ box-shadow:none; border-color:#00b09c;}
 .form-control-feedback{ line-height:50px;}
 .main-btn{ background:#00b09c; border-color:#00b09c; color:#fff;}
