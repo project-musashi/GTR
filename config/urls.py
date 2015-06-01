@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
 
     # Django Admin
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin_musashi/', include(admin.site.urls)),
 
     # User management
     url(r'^users/', include("GTR.users.urls", namespace="users")),
