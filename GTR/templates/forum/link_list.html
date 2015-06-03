@@ -42,7 +42,7 @@
     {% if link.self_description%}
     <small class="mic-info"><strong><i> - {{ link.self_description }}</i></strong></small>
     {% endif %}
-    <small class="mic-info" style="float:right;">{{link.submitted_on}} by <strong style="color:green">{{link.submitter}}</strong></small>
+    <small class="mic-info" style="float:right;">{{link.submitted_on|timesince}} ago by <strong style="color:green">{{link.submitter}}</strong></small>
     <br/><br/>
     <article>
     {{ link.description }}
