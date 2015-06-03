@@ -7,7 +7,19 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-#from GTR.forum.views import LinkDetailView
+# generate 
+
+from django.contrib.sitemaps import GenericSitemap
+from GTR.forum.models import Link
+
+Link_dict = {
+    'queryset': Link.objects.all(),
+    'date_field': 'submitted_on',
+}
+
+sitemaps = {
+    'link': GenericSitemap(Link_dict, priority=0.8),
+}
 
 urlpatterns = [
     url(r'^home/$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
@@ -24,6 +36,8 @@ urlpatterns = [
 
     url(r'^',  include("GTR.forum.urls", namespace="forum")),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 ]
 
 if settings.DEBUG:
