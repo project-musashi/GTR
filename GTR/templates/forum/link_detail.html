@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load time_filters %}
 {% load static %}
 {% load comments %}w
 
@@ -46,7 +47,7 @@
     {% if object.self_description%}
     <small class="mic-info"><strong><i> - {{ object.self_description }}</i></strong></small>
     {% endif %}
-    <small class="mic-info" style="float:right;">{{link.submitted_on|timesince}} ago by <strong style="color:green">{{link.submitter}}</strong></small>
+    <small class="mic-info" style="float:right;">{{link.submitted_on|timesince|upto:','}} ago by <strong style="color:green">{{link.submitter}}</strong></small>
     <br/><br/>
     <div>
     {{ object.description }}
@@ -110,7 +111,7 @@
 {% get_comment_list for object as comment_list %}
 {% for comment in comment_list %}
 <li class="list-group-item">
-        <b>{{ comment.user_name }}</b>&nbsp;&nbsp;<small class="mic-info">{{ comment.submit_date }}</small></br>
+        <b>{{ comment.user_name }}</b>&nbsp;&nbsp;<small class="mic-info">{{ comment.submit_date|timesince|upto:',' }} ago</small></br>
         {{ comment.comment }} </br>
 </li>
 {% endfor %}
