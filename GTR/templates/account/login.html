@@ -13,7 +13,7 @@
     <div class="col-md-6">
       <h2>{% trans "Sign In" %}</h2>
 
-      <p>{% blocktrans %}Don't have an account? Then please <a href="{{ signup_url }}">sign up</a>.{% endblocktrans %}</p>
+      <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up here</a>.{% endblocktrans %}</p>
 
       {% if socialaccount.providers  %}
       <p>{% blocktrans with site.name as site_name %}Please sign in with one
