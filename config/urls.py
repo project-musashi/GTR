@@ -11,14 +11,26 @@ from django.views.generic import TemplateView
 
 from django.contrib.sitemaps import GenericSitemap
 from GTR.forum.models import Link
+from django.contrib.sitemaps import Sitemap
+
+class MainSitemap( Sitemap ):
+ 
+  def items(self):
+    return [self]
+
+  location = "/"
+  changefreq = "monthly"
+  priority = "1"
 
 Link_dict = {
     'queryset': Link.objects.all(),
     'date_field': 'submitted_on',
 }
 
+
 sitemaps = {
     'link': GenericSitemap(Link_dict, priority=0.8),
+    'main_page' : MainSitemap,
 }
 
 urlpatterns = [
